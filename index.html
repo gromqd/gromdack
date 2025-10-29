@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hamster Combat</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🐹 Hamster Combat</h1>
+        
+        <div class="stats">
+            <div class="coins">💰 Монеты: <span id="coins">0</span></div>
+            <div class="power">💪 Сила: <span id="power">1</span></div>
+        </div>
+
+        <div class="hamster" onclick="tap()">
+            🐹
+        </div>
+
+        <div class="upgrades">
+            <h3>🛠 Улучшения:</h3>
+            <button onclick="buyUpgrade(1)">👆 Улучшение (+2) - 100 монет</button>
+            <button onclick="buyUpgrade(2)">🥊 Золотые перчатки (+5) - 500 монет</button>
+            <button onclick="buyUpgrade(3)">⚡ Энергетик (+10) - 1000 монет</button>
+        </div>
+
+        <div class="admin-panel" id="adminPanel" style="display: none;">
+            <h3>👑 Админ панель</h3>
+            <button onclick="addCoins(1000)">➕ Добавить 1000 монет</button>
+            <button onclick="resetGame()">🔄 Сбросить игру</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
