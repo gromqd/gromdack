@@ -12,6 +12,8 @@
         <div id="mainScreen">
             <h1>🐹 Hamster Combat</h1>
             
+            <div class="player-id">ID: <span id="playerId">---</span></div>
+            
             <div class="stats">
                 <div class="stat-item">
                     <span class="stat-icon">💰</span>
@@ -97,13 +99,65 @@
         <div id="adminScreen" class="screen" style="display: none;">
             <h2>👑 Админ Панель</h2>
             <div class="admin-buttons">
-                <button class="admin-action" onclick="adminAddCoins(1000)">➕ 1000 монет</button>
-                <button class="admin-action" onclick="adminAddCoins(5000)">➕ 5000 монет</button>
-                <button class="admin-action" onclick="adminReset()">🔄 Сбросить</button>
-                <button class="admin-action" onclick="exportData()">📁 Экспорт данных</button>
+                <button class="admin-action" onclick="showScreen('adminPlayers')">👥 Игроки</button>
+                <button class="admin-action" onclick="showScreen('adminLogs')">📋 Логи</button>
+                <button class="admin-action" onclick="showScreen('adminSuspicious')">🚨 Подозрительные</button>
+                <button class="admin-action" onclick="showScreen('adminImages')">🖼 Изображения</button>
             </div>
-            <div id="adminStats" class="admin-stats"></div>
             <button class="back-btn" onclick="showScreen('main')">🔙 Назад</button>
+        </div>
+
+        <!-- Список игроков -->
+        <div id="adminPlayers" class="screen" style="display: none;">
+            <h2>👥 Управление игроками</h2>
+            <div class="search-box">
+                <input type="text" id="playerSearch" placeholder="Поиск по ID или имени..." onkeyup="searchPlayers()">
+            </div>
+            <div id="playersList" class="players-list"></div>
+            <button class="back-btn" onclick="showScreen('admin')">🔙 Назад</button>
+        </div>
+
+        <!-- Логи -->
+        <div id="adminLogs" class="screen" style="display: none;">
+            <h2>📋 Логи действий</h2>
+            <div class="logs-controls">
+                <button class="admin-action" onclick="loadLogs('all')">Все</button>
+                <button class="admin-action" onclick="loadLogs('suspicious')">Подозрительные</button>
+                <button class="admin-action" onclick="loadLogs('purchases')">Покупки</button>
+                <button class="admin-action" onclick="exportLogs()">📁 Экспорт</button>
+            </div>
+            <div id="logsList" class="logs-list"></div>
+            <button class="back-btn" onclick="showScreen('admin')">🔙 Назад</button>
+        </div>
+
+        <!-- Подозрительные действия -->
+        <div id="adminSuspicious" class="screen" style="display: none;">
+            <h2>🚨 Подозрительные действия</h2>
+            <div id="suspiciousList" class="suspicious-list"></div>
+            <button class="back-btn" onclick="showScreen('admin')">🔙 Назад</button>
+        </div>
+
+        <!-- Управление изображениями -->
+        <div id="adminImages" class="screen" style="display: none;">
+            <h2>🖼 Управление изображениями</h2>
+            <div class="image-upload">
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                <button class="admin-action" onclick="document.getElementById('imageUpload').click()">📁 Загрузить изображение</button>
+                <div class="upload-info">
+                    <input type="text" id="imageName" placeholder="Название улучшения">
+                    <input type="number" id="imageCost" placeholder="Стоимость">
+                    <input type="number" id="imagePower" placeholder="Сила">
+                </div>
+            </div>
+            <div id="imagesList" class="images-list"></div>
+            <button class="back-btn" onclick="showScreen('admin')">🔙 Назад</button>
+        </div>
+
+        <!-- Детали игрока -->
+        <div id="playerDetails" class="screen" style="display: none;">
+            <h2>📊 Детали игрока</h2>
+            <div id="playerDetailsContent"></div>
+            <button class="back-btn" onclick="showScreen('adminPlayers')">🔙 Назад</button>
         </div>
 
         <!-- Уведомление -->
