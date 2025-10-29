@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hamster Combat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Главный экран -->
+        <div id="mainScreen">
+            <h1>🐹 Hamster Combat</h1>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-icon">💰</span>
+                    <span id="coins">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">💪</span>
+                    <span id="power">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🎯</span>
+                    <span id="level">1</span>
+                </div>
+            </div>
+
+            <div class="hamster" onclick="tap()">
+                🐹
+                <div class="tap-effect" id="tapEffect">+1</div>
+            </div>
+
+            <div class="buttons">
+                <button class="game-btn" onclick="showScreen('upgrades')">🛠 Улучшения</button>
+                <button class="game-btn" onclick="showScreen('stats')">📊 Статистика</button>
+                <button class="game-btn" onclick="showScreen('shop')">🏪 Магазин</button>
+                <button class="game-btn admin-btn" onclick="showScreen('admin')" id="adminBtn" style="display: none;">👑 Админ</button>
+            </div>
+        </div>
+
+        <!-- Экран улучшений -->
+        <div id="upgradesScreen" class="screen" style="display: none;">
+            <h2>🛠 Улучшения</h2>
+            <div id="upgradesList" class="upgrades-list"></div>
+            <button class="back-btn" onclick="showScreen('main')">🔙 Назад</button>
+        </div>
+
+        <!-- Экран статистики -->
+        <div id="statsScreen" class="screen" style="display: none;">
+            <h2>📊 Статистика</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalCoins">0</div>
+                    <div class="stat-label">Всего монет</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTaps">0</div>
+                    <div class="stat-label">Всего тапов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalPower">1</div>
+                    <div class="stat-label">Общая сила</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="playTime">0</div>
+                    <div class="stat-label">Минут игры</div>
+                </div>
+            </div>
+            <button class="back-btn" onclick="showScreen('main')">🔙 Назад</button>
+        </div>
+
+        <!-- Экран магазина -->
+        <div id="shopScreen" class="screen" style="display: none;">
+            <h2>🏪 Магазин</h2>
+            <div class="shop-items">
+                <div class="shop-item" onclick="buyItem('autoTap')">
+                    <div class="item-icon">⚡</div>
+                    <div class="item-info">
+                        <div class="item-name">Авто-тап</div>
+                        <div class="item-price">500 монет</div>
+                    </div>
+                </div>
+                <div class="shop-item" onclick="buyItem('doubleCoins')">
+                    <div class="item-icon">💰</div>
+                    <div class="item-info">
+                        <div class="item-name">x2 Монеты</div>
+                        <div class="item-price">1000 монет</div>
+                    </div>
+                </div>
+            </div>
+            <button class="back-btn" onclick="showScreen('main')">🔙 Назад</button>
+        </div>
+
+        <!-- Админ панель -->
+        <div id="adminScreen" class="screen" style="display: none;">
+            <h2>👑 Админ Панель</h2>
+            <div class="admin-buttons">
+                <button class="admin-action" onclick="adminAddCoins(1000)">➕ 1000 монет</button>
+                <button class="admin-action" onclick="adminAddCoins(5000)">➕ 5000 монет</button>
+                <button class="admin-action" onclick="adminReset()">🔄 Сбросить</button>
+                <button class="admin-action" onclick="exportData()">📁 Экспорт данных</button>
+            </div>
+            <div id="adminStats" class="admin-stats"></div>
+            <button class="back-btn" onclick="showScreen('main')">🔙 Назад</button>
+        </div>
+
+        <!-- Уведомление -->
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
