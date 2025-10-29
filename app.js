@@ -1,5 +1,5 @@
 // Конфигурация - используем локальный сервер
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'https://gromqd.github.io/gromdack/';
 let sessionToken = localStorage.getItem('session_token');
 let playerData = null;
 
@@ -250,3 +250,4 @@ function showScreen(screenName) {
 
 // Запуск игры
 document.addEventListener('DOMContentLoaded', initGame);
+
